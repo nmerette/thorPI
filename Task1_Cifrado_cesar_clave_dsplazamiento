@@ -1,0 +1,16 @@
+def decrypt_caesar_cipher(text, shift):
+    decrypted_text = ""
+    for char in text:
+        if char.isalpha():  # Si es una letra
+            offset = ord('A')
+            decrypted_text += chr((ord(char) - offset - shift) % 26 + offset)
+        else:
+            decrypted_text += char  # Mantener caracteres no alfabéticos sin cambio
+    return decrypted_text
+
+cipher_text = "NOYZU XEOYV ATIZA GZKJC OZNIU JKYZN KENGB KJKIO JKJZN KUAZI USKYU LHGZZ RKYGT JRKJZ UZNKJ KGZNY ULQOT MYGTJ WAKKT YONGB KZNKX KLUXK HKKTG HRKZU IGRRA VUTYZ UXOKY ULVUR OZOIG ROTZX OMAKG TJZGR KYULR OLKGT JJKGZ NZUOR RAYZX GZKZN KQKEZ AXTOT MVUOT ZYOTZ NKKBU RAZOU TGXEJ KBKRU VSKTZ ULIUJ KYZNK NOYZU XEULI UJKYO YYUOT UXJOT GZKRE XOINZ NGZON GBKHK KTLUX IKJZU RKGBK UAZSG TELGY IOTGZ OTMYZ UXOKY CNOIN OTZAX TSKGT YZNGZ SEGII UATZO YTUZJ KLOTO ZOBKO LEUAC UARJR OQKZU LOTJU AZSUX KGHUA ZEUAX LGBUX OZKZG RKUXE UAXLG BUXOZ KIUJK HXKGQ KXZNK TOCUA RJXKL KXEUA ZUZNK ROYZU LLAXZ NKXXK GJOTM CNOIN YNUAR JNKRV ZNUYK XKGJK XYCNU CUARJ ROQKZ UYZAJ EZNKY AHPKI ZOTSU XKJKZ GOR"
+
+# Probar todos los desplazamientos posibles
+for shift in range(1, 26):
+    decrypted = decrypt_caesar_cipher(cipher_text, shift)
+    print(f"Shift {shift}: {decrypted}\n")
