@@ -1,0 +1,34 @@
+def vigenere_decrypt(ciphertext, keyword):
+    # Remove spaces and ensure both ciphertext and keyword are in uppercase
+    ciphertext = ciphertext.replace(" ", "").upper()
+    keyword = keyword.upper()
+
+    # Convert keyword to repeat to match the length of the ciphertext
+    full_key = (keyword * (len(ciphertext) // len(keyword) + 1))[:len(ciphertext)]
+
+    # Decrypt each character using Vigenère cipher
+    decrypted_text = []
+    for c, k in zip(ciphertext, full_key):
+        decrypted_char = chr(((ord(c) - ord(k) + 26) % 26) + ord('A'))
+        decrypted_text.append(decrypted_char)
+
+    # Return decrypted text as a single string
+    return ''.join(decrypted_text)
+
+# Ciphertext provided
+ciphertext = ("KVQMR KJSZG RJNOE IAKKF GCGWU WRHRU FIXDA GKOBP EGRQT TBZLF "
+              "XAFHV ODWVL YHTEY WKHQR SSJHQ NRVKC FHRLY CZGVF JWPEG ZVSZT "
+              "EWEQT MRFKC RTUWT OYPSW RFUNT VRBSE ELYSS AHDUW ECUSI UQDGZ "
+              "VGBEN JRGTE USUPQ EAAEG FRHUK SPBLU YOZCR AKGFU PCWOE TVFKV "
+              "QTBOV FMNQX FFFWB VRMEW NKECF SVYYH QDOQF IDTEG FDEOA LYSFH "
+              "VJURM YVLNO ESVYY HQDOQ RGALQ AVFFA XWERA WASER PEYAM SDEQL "
+              "FQUCR JFVQR RSUWF TUJFI SHNFU HTEAJ VQUTR VZHMT NHRFM DRGWH "
+              "TEGJF CBSOJ ZBSIA YKVQG EWRHQ SGJVX AIPAE UFOND C")
+
+# Key derived from the number 6
+keyword = "ROMANS"
+
+# Decrypt the message
+decrypted_message = vigenere_decrypt(ciphertext, keyword)
+print("Decrypted Message:", decrypted_message)
+print("clave:"+ keyword)
